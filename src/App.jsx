@@ -10,17 +10,36 @@ function App() {
     setValue(value + 1);
   }, 5000);
 
-  //Se actualiza este componente y su descendencia
+  // Si se devuelve null no se muestra nada
+  // if(true){
+  //   return null;
+  // }
 
-  //Para ver la actualización de este componente (en consola)
-  console.log('App rendered');
+  // if anidados
+  // if(value < 2){
+  //   return <div> Cargando ...</div>;
+  // }else if(value >= 10){
+  //   setValue(0);
+  // }
 
   return (
     <>
-      <h1>Vite + React</h1>
+      
+      {/* Otra forma de escribir el if else (renderizado condicional) */}
+      {/* {value < 2 ? ( 
+        <div> Cargando ...</div>
+      ) : (
+        <div>
+          <h1>Vite + React</h1>
+          <MyFirstComponent propOne={value} propTwo={2} propThree={{}}/>
+        </div>
+      )} */}
 
-      {/* MFC recibe propOne, propTwo y propThree como propiedades */}
+      {/* logical AND: se muestran ambas componentes*/}
+      {value < 2 && <div> Cargando ...</div>}
+      <h1>Vite + React</h1>
       <MyFirstComponent propOne={value} propTwo={2} propThree={{}}/>
+
     </>
   );
 }
