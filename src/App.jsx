@@ -1,45 +1,40 @@
 import { useState } from 'react';
 import './App.css';
-
 import MyFirstComponent from './MyFirstComponent';
+
+const arrayOfNumbers = [1,2,3,4,5,6,7,8];
+
+const arrayOfPeople = [
+  {"id":1, name: 'Juan', age: 25},
+  {"id":2, name: 'Pedro', age: 26},
+  {"id":3, name: 'Maria', age: 27},
+  {"id":4, name: 'Jose', age: 28},
+  {"id":5, name: 'Luis', age: 29},
+];
 
 function App() {
   const[value,setValue] = useState(0);
   
-  setTimeout(() => {
-    setValue(value + 1);
-  }, 5000);
+  //Se puede iterar fuera del return
+  //key siempre tiene que estar 
+  const numberItems = arrayOfNumbers.map((item) => <li key={`array-number-item-${item}`}> {item} </li>);
 
-  // Si se devuelve null no se muestra nada
-  // if(true){
-  //   return null;
-  // }
-
-  // if anidados
-  // if(value < 2){
-  //   return <div> Cargando ...</div>;
-  // }else if(value >= 10){
-  //   setValue(0);
-  // }
+  const peopleItems = arrayOfPeople.map((person) => <li key={`array-people-item-${person.id}`}> {person.name} - {person.age} </li>);
 
   return (
     <>
-      
-      {/* Otra forma de escribir el if else (renderizado condicional) */}
-      {/* {value < 2 ? ( 
+      {value < 2 ? ( 
         <div> Cargando ...</div>
       ) : (
         <div>
           <h1>Vite + React</h1>
           <MyFirstComponent propOne={value} propTwo={2} propThree={{}}/>
+          
+          {/* Lista no ordenada */}
+          <ul> {numberItems} </ul>
+          <ul> {peopleItems} </ul>
         </div>
-      )} */}
-
-      {/* logical AND: se muestran ambas componentes*/}
-      {value < 2 && <div> Cargando ...</div>}
-      <h1>Vite + React</h1>
-      <MyFirstComponent propOne={value} propTwo={2} propThree={{}}/>
-
+      )}
     </>
   );
 }
